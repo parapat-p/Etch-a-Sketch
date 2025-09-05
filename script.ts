@@ -1,11 +1,33 @@
 const container = document.querySelector<HTMLElement>(".container");
-if(container){
+const body = document.querySelector<HTMLElement>("body");
+
+const createButton = document.createElement("button");
+createButton.textContent = "Create new grid"
+createButton.addEventListener("click",() => {
+    let gridSize:any = prompt("Please enter grid size");
+    if(!gridSize){return;}
+    if(!container){return;}
+    gridSize = Number(gridSize);
+    container.replaceChildren();
+    createGrid(gridSize,gridSize);
+})
+
+if(container && body){
+    //container
     container.style.display = "flex"
     container.style.flexDirection = "column";
+    //body
+    body.prepend(createButton);
+    body.style.display = "flex";
+    body.style.justifyContent = "center";
+    body.style.flexDirection = "column";
 }
 else{
     //Do nothing
 }
+
+
+
 
 function createSquareBox():HTMLDivElement{
     let grid = document.createElement("div");
@@ -58,5 +80,3 @@ function createGrid(row:number, column:number) :HTMLDivElement[][] {
     
     return gridArray;
 }
-
-let gridArray:HTMLDivElement[][] = createGrid(100,100);

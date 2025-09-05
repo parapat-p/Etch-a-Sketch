@@ -1,7 +1,28 @@
 var container = document.querySelector(".container");
-if (container) {
+var body = document.querySelector("body");
+var createButton = document.createElement("button");
+createButton.textContent = "Create new grid";
+createButton.addEventListener("click", function () {
+    var gridSize = prompt("Please enter grid size");
+    if (!gridSize) {
+        return;
+    }
+    if (!container) {
+        return;
+    }
+    gridSize = Number(gridSize);
+    container.replaceChildren();
+    createGrid(gridSize, gridSize);
+});
+if (container && body) {
+    //container
     container.style.display = "flex";
     container.style.flexDirection = "column";
+    //body
+    body.prepend(createButton);
+    body.style.display = "flex";
+    body.style.justifyContent = "center";
+    body.style.flexDirection = "column";
 }
 else {
     //Do nothing
@@ -49,4 +70,3 @@ function createGrid(row, column) {
     }
     return gridArray;
 }
-var gridArray = createGrid(100, 100);
