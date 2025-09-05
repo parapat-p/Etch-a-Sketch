@@ -3,17 +3,22 @@ if(container){
     container.style.display = "flex"
     container.style.flexDirection = "column";
 }
+else{
+    //Do nothing
+}
 
-function createSquareBox(){
+function createSquareBox():HTMLDivElement{
     let grid = document.createElement("div");
     grid.className = "squareBox";
     grid.style.border = "2px solid";
     grid.style.padding = "10px"; 
     grid.textContent = "1";
+    grid.style.display = "flex";
+    grid.style.flex = "1";
     return grid;
 }
 
-function createRowGrid(){
+function createRowGrid() :HTMLDivElement{
     let rowGrid = document.createElement("div");
     rowGrid.style.display = "flex"
     rowGrid.style.flexDirection ="row";
@@ -22,23 +27,21 @@ function createRowGrid(){
 }
 
 
-function createGrid(row:number, column:number){
+function createGrid(row:number, column:number) :HTMLDivElement[][] {
     let gridArray:HTMLDivElement[][] = [];
-    let gridRowArray:HTMLDivElement[] = [];
     if(container){
     for(let i = 0;i<row;i++){
 
-        let gridRow:HTMLDivElement = createRowGrid();
-        let gridRow_iter:HTMLDivElement[] = [];
+        let Row:HTMLDivElement = createRowGrid();
+        let gridRow:HTMLDivElement[] = [];
     
         for(let j = 0;j<column;j++){
-            let gridBox = createSquareBox();
-            gridRow.appendChild(gridBox);
-            gridRow_iter.push(gridBox);
+            let grid = createSquareBox();
+            Row.appendChild(grid);
+            gridRow.push(grid);
         }
-        container.appendChild(gridRow);
-        gridArray.push(gridRow_iter);
-        gridRowArray.push(gridRow);
+        container.appendChild(Row);
+        gridArray.push(gridRow);
     }
     }
     else{
@@ -48,4 +51,8 @@ function createGrid(row:number, column:number){
     return gridArray;
 }
 
-createGrid(16,16);
+function modifyGridText(gridBox:HTMLDivElement){
+    gridBox.textContent = "I modified this!"
+}
+
+let gridArray:HTMLDivElement[][] = createGrid(16,16);

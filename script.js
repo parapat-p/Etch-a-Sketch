@@ -3,12 +3,17 @@ if (container) {
     container.style.display = "flex";
     container.style.flexDirection = "column";
 }
+else {
+    //Do nothing
+}
 function createSquareBox() {
     var grid = document.createElement("div");
     grid.className = "squareBox";
     grid.style.border = "2px solid";
     grid.style.padding = "10px";
     grid.textContent = "1";
+    grid.style.display = "flex";
+    grid.style.flex = "1";
     return grid;
 }
 function createRowGrid() {
@@ -20,19 +25,17 @@ function createRowGrid() {
 }
 function createGrid(row, column) {
     var gridArray = [];
-    var gridRowArray = [];
     if (container) {
         for (var i = 0; i < row; i++) {
-            var gridRow = createRowGrid();
-            var gridRow_iter = [];
+            var Row = createRowGrid();
+            var gridRow = [];
             for (var j = 0; j < column; j++) {
-                var gridBox = createSquareBox();
-                gridRow.appendChild(gridBox);
-                gridRow_iter.push(gridBox);
+                var grid = createSquareBox();
+                Row.appendChild(grid);
+                gridRow.push(grid);
             }
-            container.appendChild(gridRow);
-            gridArray.push(gridRow_iter);
-            gridRowArray.push(gridRow);
+            container.appendChild(Row);
+            gridArray.push(gridRow);
         }
     }
     else {
@@ -40,4 +43,7 @@ function createGrid(row, column) {
     }
     return gridArray;
 }
-createGrid(16, 16);
+function modifyGridText(gridBox) {
+    gridBox.textContent = "I modified this!";
+}
+var gridArray = createGrid(16, 16);
