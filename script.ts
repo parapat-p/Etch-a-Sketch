@@ -9,18 +9,24 @@ createButton.addEventListener("click",() => {
     if(!container){return;}
     gridSize = Number(gridSize);
     container.replaceChildren();
+    if(gridSize>100){
+        gridSize = 100;
+    }
     createGrid(gridSize,gridSize);
 })
 
 if(container && body){
     //container
-    container.style.display = "flex"
+    container.style.display = "flex";
     container.style.flexDirection = "column";
+    container.style.width = "1920px";
+    container.style.height = "1020px";
     //body
     body.prepend(createButton);
     body.style.display = "flex";
     body.style.justifyContent = "center";
     body.style.flexDirection = "column";
+    body.style.alignItems = "center";
 }
 else{
     //Do nothing
@@ -32,8 +38,8 @@ else{
 function createSquareBox():HTMLDivElement{
     let grid = document.createElement("div");
     grid.className = "squareBox";
-    grid.style.border = "2px solid";
-    grid.style.padding = "10px"; 
+    grid.style.border = "1px solid";
+    grid.style.boxSizing = "border-box";
     grid.style.display = "flex";
     grid.style.flex = "1";
 
@@ -53,6 +59,7 @@ function createRowGrid() :HTMLDivElement{
     rowGrid.style.display = "flex"
     rowGrid.style.flexDirection ="row";
     rowGrid.className = "rowGrid";
+    rowGrid.style.flex = "1";
     return rowGrid;
 }
 
