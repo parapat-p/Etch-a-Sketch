@@ -11,9 +11,15 @@ function createSquareBox() {
     grid.className = "squareBox";
     grid.style.border = "2px solid";
     grid.style.padding = "10px";
-    grid.textContent = "1";
     grid.style.display = "flex";
     grid.style.flex = "1";
+    //Event
+    grid.addEventListener("mouseenter", function () {
+        grid.style.backgroundColor = "black";
+    });
+    grid.addEventListener("mouseleave", function () {
+        grid.style.backgroundColor = "white";
+    });
     return grid;
 }
 function createRowGrid() {
@@ -43,7 +49,4 @@ function createGrid(row, column) {
     }
     return gridArray;
 }
-function modifyGridText(gridBox) {
-    gridBox.textContent = "I modified this!";
-}
-var gridArray = createGrid(16, 16);
+var gridArray = createGrid(100, 100);

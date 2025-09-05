@@ -12,9 +12,17 @@ function createSquareBox():HTMLDivElement{
     grid.className = "squareBox";
     grid.style.border = "2px solid";
     grid.style.padding = "10px"; 
-    grid.textContent = "1";
     grid.style.display = "flex";
     grid.style.flex = "1";
+
+    //Event
+    grid.addEventListener("mouseenter",() => {
+        grid.style.backgroundColor = "black";
+    })
+    grid.addEventListener("mouseleave",() => {
+        grid.style.backgroundColor = "white";
+    })
+
     return grid;
 }
 
@@ -51,8 +59,4 @@ function createGrid(row:number, column:number) :HTMLDivElement[][] {
     return gridArray;
 }
 
-function modifyGridText(gridBox:HTMLDivElement){
-    gridBox.textContent = "I modified this!"
-}
-
-let gridArray:HTMLDivElement[][] = createGrid(16,16);
+let gridArray:HTMLDivElement[][] = createGrid(100,100);
