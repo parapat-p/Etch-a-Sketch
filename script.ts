@@ -51,12 +51,15 @@ function createSquareBox():HTMLDivElement{
     grid.style.display = "flex";
     grid.style.flex = "1";
     grid.style.opacity = "0.1";
+    grid.style.backgroundColor = "white";
     //Event
     grid.addEventListener("mouseenter",() => {
         let gridOpacity = Number(grid.style.opacity);
         gridOpacity += 0.1;
         grid.style.opacity = String(gridOpacity);
-        grid.style.backgroundColor = randomColor();
+        if(grid.style.backgroundColor === "white"){
+            grid.style.backgroundColor = randomColor();
+        }
     })
     // grid.addEventListener("mouseleave",() => {
     //     grid.style.backgroundColor = "white";
