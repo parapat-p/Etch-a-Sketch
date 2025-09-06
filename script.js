@@ -33,6 +33,13 @@ if (container && body) {
 else {
     //Do nothing
 }
+var bgColor = "";
+function randomColor() {
+    var r = Math.floor(Math.random() * 256);
+    var g = Math.floor(Math.random() * 256);
+    var b = Math.floor(Math.random() * 256);
+    return "rgb(".concat(r, ", ").concat(g, ", ").concat(b, ")");
+}
 function createSquareBox() {
     var grid = document.createElement("div");
     grid.className = "squareBox";
@@ -40,13 +47,17 @@ function createSquareBox() {
     grid.style.boxSizing = "border-box";
     grid.style.display = "flex";
     grid.style.flex = "1";
+    grid.style.opacity = "0.1";
     //Event
     grid.addEventListener("mouseenter", function () {
-        grid.style.backgroundColor = "black";
+        var gridOpacity = Number(grid.style.opacity);
+        gridOpacity += 0.1;
+        grid.style.opacity = String(gridOpacity);
+        grid.style.backgroundColor = randomColor();
     });
-    grid.addEventListener("mouseleave", function () {
-        grid.style.backgroundColor = "white";
-    });
+    // grid.addEventListener("mouseleave",() => {
+    //     grid.style.backgroundColor = "white";
+    // })
     return grid;
 }
 function createRowGrid() {

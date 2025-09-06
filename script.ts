@@ -1,6 +1,7 @@
 const container = document.querySelector<HTMLElement>(".container");
 const body = document.querySelector<HTMLElement>("body");
 
+
 const createButton = document.createElement("button");
 createButton.textContent = "Create new grid"
 createButton.addEventListener("click",() => {
@@ -32,7 +33,14 @@ else{
     //Do nothing
 }
 
+let bgColor = "";
 
+function randomColor(){
+    let r:number = Math.floor(Math.random() * 256);
+    let g:number = Math.floor(Math.random() * 256);
+    let b:number = Math.floor(Math.random() * 256);
+    return `rgb(${r}, ${g}, ${b})`;
+}
 
 
 function createSquareBox():HTMLDivElement{
@@ -42,14 +50,17 @@ function createSquareBox():HTMLDivElement{
     grid.style.boxSizing = "border-box";
     grid.style.display = "flex";
     grid.style.flex = "1";
-
+    grid.style.opacity = "0.1";
     //Event
     grid.addEventListener("mouseenter",() => {
-        grid.style.backgroundColor = "black";
+        let gridOpacity = Number(grid.style.opacity);
+        gridOpacity += 0.1;
+        grid.style.opacity = String(gridOpacity);
+        grid.style.backgroundColor = randomColor();
     })
-    grid.addEventListener("mouseleave",() => {
-        grid.style.backgroundColor = "white";
-    })
+    // grid.addEventListener("mouseleave",() => {
+    //     grid.style.backgroundColor = "white";
+    // })
 
     return grid;
 }
@@ -87,3 +98,4 @@ function createGrid(row:number, column:number) :HTMLDivElement[][] {
     
     return gridArray;
 }
+
